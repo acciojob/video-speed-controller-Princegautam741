@@ -1,9 +1,8 @@
 const video = document.querySelector('video');
-const progress = document.querySelector('.progress__filled');
+const progress = document.querySelector('.speed-bar');
 const playButton = document.querySelector('.player__button');
 const volumeInput = document.querySelector('input[name="volume"]');
 const playbackSpeedInput = document.querySelector('input[name="playbackRate"]');
-const skipButtons = document.querySelectorAll('[data-skip]');
 const rewindButton = document.querySelector('.rewind');
 const skipButton = document.querySelector('.skip');
 
@@ -19,7 +18,7 @@ function togglePlay() {
 
 function handleProgress() {
   const percent = (video.currentTime / video.duration) * 100;
-  progress.style.flexBasis = `${percent}%`;
+  progress.style.width = `${percent}%`;
 }
 
 function handleVolumeChange() {
@@ -31,15 +30,11 @@ function handlePlaybackSpeedChange() {
 }
 
 function skip() {
-  video.currentTime += parseFloat(this.dataset.skip);
+  video.currentTime += parseFloat(skipButton.dataset.skip);
 }
 
 function rewind() {
   video.currentTime -= 10;
-}
-
-function fastForward() {
-  video.currentTime += 25;
 }
 
 video.addEventListener('click', togglePlay);
@@ -51,6 +46,4 @@ playButton.addEventListener('click', togglePlay);
 volumeInput.addEventListener('input', handleVolumeChange);
 playbackSpeedInput.addEventListener('input', handlePlaybackSpeedChange);
 rewindButton.addEventListener('click', rewind);
-skipButton.addEventListener('click', fastForward);
-
-skipButtons.forEach((button) => button.addEventListener('click', skip));
+skipButton.addEventListener('click', skip);
