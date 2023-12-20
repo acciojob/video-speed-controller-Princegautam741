@@ -1,3 +1,4 @@
+// script.js
 const video = document.querySelector('video');
 const progress = document.querySelector('.speed-bar');
 const playButton = document.querySelector('.player__button');
